@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  catchgpt:
+    image: zibdie/catchgpt:latest
+    container_name: catchgpt
+    ports:
+      - "3000:3000"
+    environment:
+      - NEXT_PUBLIC_SERVER_URL=http://localhost:3000
+      - SQLITE_DATA_DIR=/app/data
+    volumes:
+      - ./catchgpt_data:/app/data
+    restart: unless-stopped
+

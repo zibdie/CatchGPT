@@ -12,6 +12,60 @@ CatchGPT is a tool designed to generate PDF assignments with hidden tracking URL
 
 ## Getting Started
 
+## Running with Docker (Recommended)
+
+The Docker method sets up a container with all required libraries and software. 
+
+There are images available for both x86-x64 (Intel) and ARM device (M-series Macs, Raspberry Pi's) via Docker Hub.
+
+### Prerequisites
+
+- Docker (and Docker Compose if you wish to use that method)
+
+### Using Docker Compose
+
+1. Clone the repository:
+```bash
+git clone [your-repository-url]
+cd CatchGPT
+```
+
+2. Ensure you have Docker Compose. You can test by running this command in your Command Prompt or Terminal
+```
+> docker-compose version  
+Docker Compose version v2.33.1-desktop.1
+```
+
+**Tip:** You may need to run it as `docker compose`
+
+3. Build and start the container:
+```bash
+docker-compose up -d
+```
+
+The application will be available at http://localhost:3000. All tracking data is stored in a SQLite database that persists between container restarts thanks to a Docker volume.
+
+4. To stop the container:
+```bash
+docker-compose down
+```
+
+### Using Docker Directly
+
+1. Pull the latest image from Docker Hub:
+```bash
+docker pull zibdie/catchgpt:latest
+```
+
+2. Run the container with a volume for the SQLite database:
+```bash
+docker run -p 3000:3000 -e NEXT_PUBLIC_SERVER_URL=http://localhost:3000 -v catchgpt_data:/app/data -d zibdie/catchgpt:latest
+```
+
+The application will be available at http://localhost:3000.
+
+## Running Locally
+
 ### Prerequisites
 
 - Node.js 18+ and npm
@@ -20,7 +74,7 @@ CatchGPT is a tool designed to generate PDF assignments with hidden tracking URL
 
 1. Clone the repository:
 ```bash
-git clone [your-repository-url]
+git clone https://github.com/zibdie/CatchGPT
 cd CatchGPT
 ```
 
@@ -39,46 +93,6 @@ If not provided, it will default to `http://localhost:3000`.
 
 ```bash
 npm run dev
-```
-
-The application will be available at http://localhost:3000.
-
-## Running with Docker
-
-### Prerequisites
-
-- Docker and Docker Compose installed on your system
-
-### Using Docker Compose (Recommended)
-
-1. Clone the repository:
-```bash
-git clone [your-repository-url]
-cd CatchGPT
-```
-
-2. Build and start the container:
-```bash
-docker-compose up -d
-```
-
-The application will be available at http://localhost:3000. All tracking data is stored in a SQLite database that persists between container restarts thanks to a Docker volume.
-
-3. To stop the container:
-```bash
-docker-compose down
-```
-
-### Using Docker Directly
-
-1. Pull the latest image from Docker Hub:
-```bash
-docker pull zibdie/catchgpt:latest
-```
-
-2. Run the container with a volume for the SQLite database:
-```bash
-docker run -p 3000:3000 -e NEXT_PUBLIC_SERVER_URL=http://localhost:3000 -v catchgpt_data:/app/data -d zibdie/catchgpt
 ```
 
 The application will be available at http://localhost:3000.

@@ -26,7 +26,7 @@ There are images available for both x86-x64 (Intel) and ARM device (M-series Mac
 
 1. Clone the repository:
 ```bash
-git clone [your-repository-url]
+git clone https://github.com/zibdie/CatchGPT
 cd CatchGPT
 ```
 
